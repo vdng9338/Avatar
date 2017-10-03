@@ -1,5 +1,5 @@
 class Personnage:
-    def init(self):
+    def __init__(self):
         pass
 
 def main():
