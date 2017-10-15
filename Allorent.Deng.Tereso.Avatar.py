@@ -132,6 +132,7 @@ def main():
                 iAvatar = int(input("Quel avatar ? "))
                 if iAvatar < 0 or iAvatar >= len(avatar):
                     print("L'avatar n.", iAvatar, "n'existe pas.")
+                    continue
                 avatar[iAvatar].afficherAvatar()
                 print()
             except ValueError:
