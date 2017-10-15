@@ -91,9 +91,9 @@ def interactionEngendrer(avatars):
         print("Il y a strictement moins de deux avatars. Que c'est triste...\n")
         return
     iAvatar1 = demandeAvatar(avatars, "Numéro de l'avatar 1")
-    avatar1 = avatars[iAvatar1]
     if iAvatar1 == None:
         return
+    avatar1 = avatars[iAvatar1]
     if not avatar1.testVie():
         print("L'avatar", avatar1.getNom(), "est mort.")
         return
