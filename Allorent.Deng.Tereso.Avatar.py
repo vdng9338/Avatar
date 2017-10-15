@@ -120,19 +120,19 @@ def main():
         print("6) Quitter")
         choix = input()
         if choix == "1":
-            interactionCombat(avatars)
+            interactionCombat(avatar)
         elif choix == "2":
-            interactionDon(avatars)
+            interactionDon(avatar)
         elif choix == "3":
-            interactionEngendrer(avatars)
+            interactionEngendrer(avatar)
         elif choix == "4":
-            afficherTousAvatars(avatars)
+            afficherTousAvatars(avatar)
         elif choix == "5":
             try:
                 iAvatar = int(input("Quel avatar ? "))
-                if iAvatar < 0 or iAvatar >= len(avatars):
+                if iAvatar < 0 or iAvatar >= len(avatar):
                     print("L'avatar n.", iAvatar, "n'existe pas.")
-                avatars[iAvatar].afficherAvatar()
+                avatar[iAvatar].afficherAvatar()
                 print()
             except ValueError:
                 print("Vous n'avez pas entré un nombre.")
