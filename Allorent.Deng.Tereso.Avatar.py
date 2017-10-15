@@ -88,7 +88,7 @@ def interactionDon(avatars):
         
 def interactionEngendrer(avatars):
     if len(avatars) <= 1:
-        print("Il y a strictement moins de deux avatars. Que c'est triste...")
+        print("Il y a strictement moins de deux avatars. Que c'est triste...\n")
         return
     iAvatar1 = demandeAvatar(avatars, "Numéro de l'avatar 1")
     avatar1 = avatars[iAvatar1]
