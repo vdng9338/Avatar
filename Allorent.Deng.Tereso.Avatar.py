@@ -125,7 +125,7 @@ def main():
             interactionDon(avatars)
         elif choix == "3":
             interactionEngendrer(avatars)
-          elif choix == "4":
+        elif choix == "4":
               afficherTousAvatars()
         elif choix == "5":
             try:
