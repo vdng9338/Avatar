@@ -176,7 +176,7 @@ def main():
                 print("Il n'y a aucun avatar.\n")
                 continue
             try:
-                iAvatar = int(input("Quel avatar ? (entre 0 et ", len(avatar)-1, ") "))
+                iAvatar = int(input("Quel avatar ? (entre 0 et " + str(len(avatar)-1) + " ) "))
                 if iAvatar < 0 or iAvatar >= len(avatar):
                     print("L'avatar n.", iAvatar, "n'existe pas.")
                     continue
