@@ -126,7 +126,7 @@ def main():
         elif choix == "3":
             interactionEngendrer(avatars)
         elif choix == "4":
-              afficherTousAvatars()
+            afficherTousAvatars()
         elif choix == "5":
             try:
                 iAvatar = int(input("Quel avatar ? "))
