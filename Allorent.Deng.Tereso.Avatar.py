@@ -12,6 +12,9 @@ class Personnage:
 
   
 def afficherNomsAvatars(avatars):
+    if len(avatars) == 0:
+        print("Il n'y a aucun avatar.\n")
+        return
     for i in range(len(avatars)):
         if avatars[i].testVie():
             print("Avatar" + i + ":", avatars[i].getNom())
@@ -26,13 +29,18 @@ def afficherTousAvatars(avatars):
         print()
 
 def demandeAvatar(avatars, message):
+    if len(avatars) == 0:
+        print("Il n'y a aucun avatar.\n")
+        return None
     ret = -1
     while ret < 0 or ret >= len(avatars):
-        ligne = input(message + " (l pour lister, d pour lister avec détails) : ")
+        ligne = input(message + " (l pour lister, d pour lister avec détails, a pour annuler) : ")
         if ligne == "l":
             afficherNomsAvatars(avatars)
         elif ligne == "d":
             afficherTousAvatars(avatars)
+        elif ligne == "a":
+            return None
         else:
             try:
                 ret = int(ligne)
@@ -44,11 +52,28 @@ def demandeAvatar(avatars, message):
     
 # Peut-on ressusciter un avatar ?
 def interactionDon(avatars):
+    if len(avatars) <= 1:
+        print("Il y a strictement moins de deux avatars. Que c'est triste...")
+        return
     iAvatar1 = demandeAvatar(avatars, "Numéro de l'avatar qui donne")
+    if iAvatar1 == None:
+        return
     avatar1 = avatars[iAvatar1]
     iAvatar2 = demandeAvatar(avatars, "Numéro de l'avatar qui recoit")
+    if iAvatar2 == None:
+        return
+    if iAvatar1 == iAvatar2:
+        print("Un avatar ne peut se donner des points de vie à soi-même.")
+        return
     avatar2 = avatars[iAvatar2]
-    vie = int(input("Nombre de points de vie : "))
+    vie = -1
+    while vie <= 0:
+        try:
+            vie = int(input("Nombre de points de vie : "))
+        except ValueError:
+            print("Vous n'avez pas entré un nombre...")
+        if vie <= 0:
+            print("Nombre de points de vie négatif ou nul...")
     if avatars[iAvatar1].getPtsVie() <= vie:
         print("L'avatar", avatar1.getNom(), "n'a que", avatar1.getPtsVie(), "point(s) de vie. Don impossible.")
     else:
@@ -58,14 +83,21 @@ def interactionDon(avatars):
         avatar2.afficherPtsVie()
         
 def interactionEngendrer(avatars):
+    if len(avatars) <= 1:
+        print("Il y a strictement moins de deux avatars. Que c'est triste...")
+        return
     iAvatar1 = demandeAvatar(avatars, "Numéro de l'avatar 1")
     avatar1 = avatars[iAvatar1]
+    if iAvatar1 == None:
+        return
     if not avatar1.testVie():
         print("L'avatar", avatar1.getNom(), "est mort.")
         return
     iAvatar2 = demandeAvatar(avatars, "Numéro de l'avatar 2")
     if iAvatar1 == iAvatar2:
         print("Il faut deux avatars différents pour en engendrer un nouveau.")
+        return
+    if iAvatar2 == None:
         return
     avatar2 = avatars[iAvatar2]
     if not avatar2.testVie():
@@ -81,7 +113,12 @@ def interactionEngendrer(avatars):
         print("Le 1er avatar est de catégorie", avatar1.getCategorie(), "alors que le 2e est de catégorie", avatar2.getCategorie())
   
 def interactionCombat(avatars):
+    if len(avatars) <= 1:
+        print("Il y a strictement moins de deux avatars. Que c'est triste...")
+        return
     iAvatar1 = demandeAvatar(avatars, "Numéro de l'avatar 1")
+    if iAvatar1 == None:
+        return
     avatar1 = avatars[iAvatar1]
     if not avatar1.testVie():
         print("L'avatar", avatar1.getNom(), "est mort.")
@@ -89,6 +126,8 @@ def interactionCombat(avatars):
     iAvatar2 = demandeAvatar(avatars, "Numéro de l'avatar 2")
     if iAvatar1 == iAvatar2:
         print("Un avatar ne peut se battre contre lui-même !")
+        return
+    if iAvatar2 == None:
         return
     avatar2 = avatars[iAvatar2]
     if not avatar2.testVie():
