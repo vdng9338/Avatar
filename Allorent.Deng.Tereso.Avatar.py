@@ -1,25 +1,119 @@
 import random
 
-class Personnage:
-    def __init__(self, nom, ptsVie, force, taille, poids, categorie):
-        self._nom = nom
-        self._ptsVie = ptsVie
-        self._force = force
-        self._taille = taille
-        self._poids = poids
-        self._categorie = categorie
+class Personnage ():
+  def __init__(self, nom, ptsVie, force, taille, poids, categorie):
+    self._nom = nom
+    self._ptsVie = ptsVie
+    self._force = force
+    self._taille = taille
+    self._poids = poids
+    self._categorie = categorie
+    
+  def getPtsVie(self):
+    return ptsVie
+    
+  def setPtsVie(self, ptsVie):
+    self._ptsVie = ptsVie
 
+  def afficherPtsVie(self):
+    print("Points de vie de " + self.getNom() + " :", ptsVie)
 
+  def getNom(self):
+    return nom
+
+  def setNom(self, nom):
+    self._nom = nom
+
+  def getForce (self):
+    return force
+
+  def setForce(self):
+    ##force = int(input("entrez une nouvelle force (entre 1 et 50): ", force2))
+    # force2 est ici la valeur par laquelle in remplace l'ancienne force
+    ##while force < 1 or force > 50:
+    ## print ("La valeur choisie est impossible.")
+    ##  force = int(input("entrez une nouvelle valeur comrise entre 1 et 50: ", force2))
+    pass
+
+  def getTaille (self):
+    return taille
+
+  def setTaille (self):
+    ##taille = float(input("entrez la nouvelle taille (entre 1 et 2 mètres): ", taille2))
+    # taille2 est ici la valeur qui remplace l'ancienne taille de l'instance sélectionnée
+    ##while taille < 1,00 or taille > 2.00:
+    ##  print ("La valeur choisie est impossible.")
+    ##  taille = float(input("entrez la nouvelle taille (entre 1 et 2 mètres): ", taille2))
+    pass
+
+  def getPoids (self):
+    return poids
+    
+  def setPoids (self):
+    ##poids = int(input("entrez le nouveau poids (entre 50 et 100 kg): ", poids2))
+    # poids2 est ici la valeur qui remplace l'ancien poids de l'instance sélectionnée
+    ##while poids < 50 or poids > 100:
+    ##  print ("La valeur choisie est impossible.")
+    ##  poids = int(input("entrez le nouveau poids (entre 50 et 100 kg): ", poids2))
+    pass
+      
+  def getCategorie (self):
+    return categorie
   
+  def setCategorie (self):
+    ##categorie = input("entrez la nouvelle catégorie: ", categorie2)
+    #categorie2 est ici la nouvelle catégorie de l'instance sélectionnée
+    pass
+  
+  def afficherAvatar (self):
+    print ("caractéristiques de l'avatar:", "", "Nom: ", self.getNom(), "", "Points de Vie: ", self.getPtsVie(), "", "Force: ", self.getForce(), "", "Taille: ", self.getTaille(), " mètre(s)", "", "Poids: ", poids, " kilogrammes", "", "Catégorie: ", categorie)
+  
+  
+  
+  
+  
+  
+  def testVie (self):
+    return self.getPtsVie() >= 1
+    
+  def testCat (self, avatar2):
+    return self.getCategorie() == avatar2.getCategorie()
+    
+    
+  def imc(self):
+      self._imc = self._poids / self.taille**2
+  
+  def don(self, avatar2, vie) :
+    if self.testCat(avatar2) and self.getPtsVie() > self.getPtsVie():
+      avatar2.setPtsVie(avatar2.getPtsVie() + vie)
+      self.setPtsVie(self.getPtsVie() - vie)
+  
+  def engendrer(self, avatar2) :
+      if testCat(avatar2):
+          Personnage(avatar2.nom , avatar2.force + self.force // 15
+      
+  def combat(self, avatar2):
+      k = (self._imc + self._force) / (avatar2.imc() + avatar2.getForce())
+      
+      if k >= 1 :
+          avatar2.setPtsVie(avatar2.getPtsVie() / K)
+          
+      if k < 1 :
+          self.setPtsVie(self.getPtsVie() * K)
+    
+    
+    
+    #QUestion: Peut-on remplacer le terme "catégorie" par "race" (dans le programme, pas dans les variables)?
+    
 def afficherNomsAvatars(avatars):
     if len(avatars) == 0:
         print("Il n'y a aucun avatar.\n")
         return
     for i in range(len(avatars)):
         if avatars[i].testVie():
-            print("Avatar" + i + ":", avatars[i].getNom())
+            print("Avatar " + i + " :", avatars[i].getNom())
         else:
-            print("Avatar" + i + " (mort) :", avatars[i].getNom())
+            print("Avatar " + i + " (mort) :", avatars[i].getNom())
     print()
 
 def afficherTousAvatars(avatars):
