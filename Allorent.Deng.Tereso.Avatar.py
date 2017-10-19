@@ -16,56 +16,55 @@ class Personnage ():
     self._ptsVie = ptsVie
 
   def afficherPtsVie(self):
-    print("Points de vie de " + self.getNom() + " :", ptsVie)
+    print("Points de vie de " + self.getNom() + " :", self.getPtsVie())
 
   def getNom(self):
-    return nom
+    return self._nom
 
   def setNom(self, nom):
     self._nom = nom
 
   def getForce (self):
-    return force
+    return self._force
 
-  def setForce(self):
-		self._force = force
+  def setForce(self, force):
+    self._force = force
     ## if force < 1 or > 50:
     ## print ("La valeur choisie est impossible.")
     ##  force = int(input("entrez une nouvelle valeur comrise entre 1 et 50: ", force2))
 
   def getTaille (self):
-    return taille
+    return self._taille
 
-  def setTaille (self):
+  def setTaille (self, taille):
     self._taille = taille
     ##while taille < 1,00 or taille > 2.00:
     ##  print ("La valeur choisie est impossible.")
     ##  taille = float(input("entrez la nouvelle taille (entre 1 et 2 mètres): ", taille2))
 
   def getPoids (self):
-    return poids
+    return self._poids
     
-  def setPoids (self):
-  	self._poids = poids
+  def setPoids (self, poids):
+    self._poids = poids
     ##while poids < 50 or poids > 100:
     ##  print ("La valeur choisie est impossible.")
     ##  poids = int(input("entrez le nouveau poids (entre 50 et 100 kg): ", poids2))
       
   def getCategorie (self):
-    return categorie
+    return self._categorie
   
-  def setCategorie (self):
-  	self._categorie = categorie
+  def setCategorie (self, categorie):
+    self._categorie = categorie
   
   def afficherAvatar (self):
-    print ("caractéristiques de l'avatar:")
-    print("Nom: ", self.getNom())
-    print("Points de Vie: ", self.getPtsVie())
-    print("Force: ", self.getForce())
-    print("Taille: ", self.getTaille(), " mètre(s)")
-    print("Poids: ", poids, " kilogrammes")
-    print("Catégorie: ", categorie)
-  
+    print("Caractéristiques de l'avatar :")
+    print("Nom :", self.getNom())
+    print("Points de vie :", self.getPtsVie())
+    print("Force :", self.getForce())
+    print("Taille :", self.getTaille(), "mètre(s)")
+    print("Poids :", poids, " kilogrammes")
+    print("Catégorie :", categorie)
   
   
   def testVie (self):
@@ -74,9 +73,8 @@ class Personnage ():
   def testCat (self, avatar2):
     return self.getCategorie() == avatar2.getCategorie()
     
-    
   def imc(self):
-      self._imc = self._poids / self._taille**2
+      return self.getPoids() / self.getTaille()**2
   
   def don(self, avatar2, vie) :
     if self.testCat(avatar2) and self.getPtsVie() > avatar2.getPtsVie():
