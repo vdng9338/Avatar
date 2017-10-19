@@ -10,10 +10,10 @@ class Personnage ():
     self._categorie = categorie
     
   def getPtsVie(self):
-    return ptsVie
+    return self._ptsVie
     
   def setPtsVie(self, ptsVie):
-    self._ptsVie = ptsVie
+    self._ptsVie = int(ptsVie)
 
   def afficherPtsVie(self):
     print("Points de vie de " + self.getNom() + " :", self.getPtsVie())
@@ -29,27 +29,18 @@ class Personnage ():
 
   def setForce(self, force):
     self._force = force
-    ## if force < 1 or > 50:
-    ## print ("La valeur choisie est impossible.")
-    ##  force = int(input("entrez une nouvelle valeur comrise entre 1 et 50: ", force2))
 
   def getTaille (self):
     return self._taille
 
   def setTaille (self, taille):
     self._taille = taille
-    ##while taille < 1,00 or taille > 2.00:
-    ##  print ("La valeur choisie est impossible.")
-    ##  taille = float(input("entrez la nouvelle taille (entre 1 et 2 mètres): ", taille2))
 
   def getPoids (self):
     return self._poids
     
   def setPoids (self, poids):
     self._poids = poids
-    ##while poids < 50 or poids > 100:
-    ##  print ("La valeur choisie est impossible.")
-    ##  poids = int(input("entrez le nouveau poids (entre 50 et 100 kg): ", poids2))
       
   def getCategorie (self):
     return self._categorie
@@ -63,8 +54,8 @@ class Personnage ():
     print("Points de vie :", self.getPtsVie())
     print("Force :", self.getForce())
     print("Taille :", self.getTaille(), "mètre(s)")
-    print("Poids :", poids, " kilogrammes")
-    print("Catégorie :", categorie)
+    print("Poids :", self.getPoids(), " kilogrammes")
+    print("Catégorie :", self.getCategorie())
   
   
   def testVie (self):
@@ -77,26 +68,26 @@ class Personnage ():
       return self.getPoids() / self.getTaille()**2
   
   def don(self, avatar2, vie) :
-    if self.testCat(avatar2) and self.getPtsVie() > avatar2.getPtsVie():
+    if self.testCat(avatar2) and self.getPtsVie() > vie:
       avatar2.setPtsVie(avatar2.getPtsVie() + vie)
       self.setPtsVie(self.getPtsVie() - vie)
   
   def engendrer(self, avatar2) :
-      if testCat(avatar2):
-          Personnage(self._nom + "-" + avatar2._nom , int((self.getPtsVie + avatar2.getPtsVie)*100 - (self.getPtsVie + avatar2.getPtsVie)*15) , int((self.getForce + avatar2.getForce)*100 - (self.getForce + avatar2.getForce)*15), 145 , 60 , humain)
+      if self.testCat(avatar2):
+          return Personnage(self.getNom() + "-" + avatar2.getNom() , int((self.getPtsVie() + avatar2.getPtsVie())*100 - (self.getPtsVie() + avatar2.getPtsVie())*15) , int((self.getForce() + avatar2.getForce())*100 - (self.getForce() + avatar2.getForce())*15), 145 , 60 , self.getCategorie())
+      ## Caractéristiques à vérifier
       
   def combat(self, avatar2):
-      k = (self._imc + self._force) / (avatar2.imc() + avatar2.getForce())
+      k = (self.imc() + self.getForce()) / (avatar2.imc() + avatar2.getForce())
       
       if k >= 1 :
-          avatar2.setPtsVie(avatar2.getPtsVie() / K)
+          avatar2.setPtsVie(avatar2.getPtsVie() / k)
           
       if k < 1 :
-          self.setPtsVie(self.getPtsVie() * K)
+          self.setPtsVie(self.getPtsVie() * k)
     
     
-    
-    #QUestion: Peut-on remplacer le terme "catégorie" par "race" (dans le programme, pas dans les variables)?
+
     
 def afficherNomsAvatars(avatars):
     if len(avatars) == 0:
@@ -104,9 +95,9 @@ def afficherNomsAvatars(avatars):
         return
     for i in range(len(avatars)):
         if avatars[i].testVie():
-            print("Avatar " + i + " :", avatars[i].getNom())
+            print("Avatar " + str(i) + " :", avatars[i].getNom())
         else:
-            print("Avatar " + i + " (mort) :", avatars[i].getNom())
+            print("Avatar " + str(i) + " (mort) :", avatars[i].getNom())
     print()
 
 def afficherTousAvatars(avatars):
@@ -197,7 +188,7 @@ def interactionEngendrer(avatars):
     if avatar1.testCat(avatar2):
         avatarEngendre = avatar1.engendrer(avatar2)
         avatars.append(avatarEngendre)
-        print("L'avatar suivant (n." + len(avatars)-1 + ") a été engendré :")
+        print("L'avatar suivant (n." + str(len(avatars)-1) + ") a été engendré :")
         avatarEngendre.afficherAvatar()
     else:
         print("Impossible d'engendrer l'avatar.")
