@@ -28,48 +28,43 @@ class Personnage ():
     return force
 
   def setForce(self):
-    ##force = int(input("entrez une nouvelle force (entre 1 et 50): ", force2))
-    # force2 est ici la valeur par laquelle in remplace l'ancienne force
-    ##while force < 1 or force > 50:
+		self._force = force
+    ## if force < 1 or > 50:
     ## print ("La valeur choisie est impossible.")
     ##  force = int(input("entrez une nouvelle valeur comrise entre 1 et 50: ", force2))
-    pass
 
   def getTaille (self):
     return taille
 
   def setTaille (self):
-    ##taille = float(input("entrez la nouvelle taille (entre 1 et 2 mètres): ", taille2))
-    # taille2 est ici la valeur qui remplace l'ancienne taille de l'instance sélectionnée
+    self._taille = taille
     ##while taille < 1,00 or taille > 2.00:
     ##  print ("La valeur choisie est impossible.")
     ##  taille = float(input("entrez la nouvelle taille (entre 1 et 2 mètres): ", taille2))
-    pass
 
   def getPoids (self):
     return poids
     
   def setPoids (self):
-    ##poids = int(input("entrez le nouveau poids (entre 50 et 100 kg): ", poids2))
-    # poids2 est ici la valeur qui remplace l'ancien poids de l'instance sélectionnée
+  	self._poids = poids
     ##while poids < 50 or poids > 100:
     ##  print ("La valeur choisie est impossible.")
     ##  poids = int(input("entrez le nouveau poids (entre 50 et 100 kg): ", poids2))
-    pass
       
   def getCategorie (self):
     return categorie
   
   def setCategorie (self):
-    ##categorie = input("entrez la nouvelle catégorie: ", categorie2)
-    #categorie2 est ici la nouvelle catégorie de l'instance sélectionnée
-    pass
+  	self._categorie = categorie
   
   def afficherAvatar (self):
-    print ("caractéristiques de l'avatar:", "", "Nom: ", self.getNom(), "", "Points de Vie: ", self.getPtsVie(), "", "Force: ", self.getForce(), "", "Taille: ", self.getTaille(), " mètre(s)", "", "Poids: ", poids, " kilogrammes", "", "Catégorie: ", categorie)
-  
-  
-  
+    print ("caractéristiques de l'avatar:")
+    print("Nom: ", self.getNom())
+    print("Points de Vie: ", self.getPtsVie())
+    print("Force: ", self.getForce())
+    print("Taille: ", self.getTaille(), " mètre(s)")
+    print("Poids: ", poids, " kilogrammes")
+    print("Catégorie: ", categorie)
   
   
   
@@ -81,16 +76,16 @@ class Personnage ():
     
     
   def imc(self):
-      self._imc = self._poids / self.taille**2
+      self._imc = self._poids / self._taille**2
   
   def don(self, avatar2, vie) :
-    if self.testCat(avatar2) and self.getPtsVie() > self.getPtsVie():
+    if self.testCat(avatar2) and self.getPtsVie() > avatar2.getPtsVie():
       avatar2.setPtsVie(avatar2.getPtsVie() + vie)
       self.setPtsVie(self.getPtsVie() - vie)
   
   def engendrer(self, avatar2) :
       if testCat(avatar2):
-          Personnage(avatar2.nom , avatar2.force + self.force // 15
+          Personnage(self._nom + "-" + avatar2._nom , int((self.getPtsVie + avatar2.getPtsVie)*100 - (self.getPtsVie + avatar2.getPtsVie)*15) , int((self.getForce + avatar2.getForce)*100 - (self.getForce + avatar2.getForce)*15), 145 , 60 , humain)
       
   def combat(self, avatar2):
       k = (self._imc + self._force) / (avatar2.imc() + avatar2.getForce())
