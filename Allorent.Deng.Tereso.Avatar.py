@@ -83,7 +83,7 @@ class Personnage ():
       nForce = int((self.getForce() + avatar2.getForce()) / 2 * 85 / 100)
       tailleCm = int(self.getTaille() * 100)
       tailleCmAutre = int(avatar2.getTaille() * 100)
-      nTaille = int((tailleCm + tailleCmAutre) / 2 * 85 / 100 / 100)
+      nTaille = int((tailleCm + tailleCmAutre) / 2 * 85 / 100) / 100
       nPoids = int((self.getPoids() + avatar2.getPoids()) / 2 * 85 / 100)
       nCategorie = self.getCategorie()
       return Personnage(nNom, nPtsVie, nForce, nTaille, nPoids, nCategorie)
