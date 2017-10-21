@@ -1,3 +1,7 @@
+# afficher caractéristiques avatar(s) dès leur création ?
+# commentaires victoire combat ?
+#changer nom avatar engendré ?
+#
 import random
 
 class Personnage ():
@@ -54,7 +58,7 @@ class Personnage ():
     print("Points de vie :", self.getPtsVie())
     print("Force :", self.getForce())
     print("Taille :", self.getTaille(), "mètre(s)")
-    print("Poids :", self.getPoids(), " kilogrammes")
+    print("Poids :", self.getPoids(), "kilogrammes")
     print("Catégorie :", self.getCategorie())
   
   
@@ -74,8 +78,8 @@ class Personnage ():
   
   def engendrer(self, avatar2) :
       if self.testCat(avatar2):
-          return Personnage(self.getNom() + "-" + avatar2.getNom() , int((self.getPtsVie() + avatar2.getPtsVie())*100 - (self.getPtsVie() + avatar2.getPtsVie())*15) , int((self.getForce() + avatar2.getForce())*100 - (self.getForce() + avatar2.getForce())*15), 145 , 60 , self.getCategorie())
-      ## Caractéristiques à vérifier
+          return Personnage(self.getNom() + "-" + avatar2.getNom() , int((self.getPtsVie() + avatar2.getPtsVie())*100- (self.getPtsVie() + avatar2.getPtsVie())*15) / 100 , int((self.getForce() + avatar2.getForce())*100 - (self.getForce() + avatar2.getForce())*15) / 100, 1.45 , 60 , self.getCategorie())
+      # Caractéristiques à vérifier
       
   def combat(self, avatar2):
       k = (self.imc() + self.getForce()) / (avatar2.imc() + avatar2.getForce())
@@ -147,12 +151,19 @@ def interactionDon(avatars):
         print("Un avatar ne peut se donner des points de vie à soi-même.\n")
         return
     avatar2 = avatars[iAvatar2]
+    if not avatar1.testCat(avatar2):
+      print("Les deux avatars ne sonr pas de la même catégorie.")
+      print(avatar1.getNom() + " est de catégorie " + avatar1.getCategorie())
+      print(avatar2.getNom() + " est de catégorie " + avatar2.getCategorie())
+      print()
+      return
     vie = -1
     while vie <= 0:
         try:
             vie = int(input("Nombre de points de vie : "))
         except ValueError:
             print("Vous n'avez pas entré un nombre...")
+            continue
         if vie <= 0:
             print("Nombre de points de vie négatif ou nul...")
     if avatars[iAvatar1].getPtsVie() <= vie:
@@ -268,3 +279,4 @@ def main():
             print("Choix inconnu !")
 
 main()
+
