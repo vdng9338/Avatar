@@ -17,7 +17,7 @@ class Personnage ():
     return self._ptsVie
     
   def setPtsVie(self, ptsVie):
-    self._ptsVie = int(ptsVie)
+    self._ptsVie = ptsVie
 
   def afficherPtsVie(self):
     print("Points de vie de " + self.getNom() + " :", self.getPtsVie())
@@ -81,7 +81,9 @@ class Personnage ():
       nNom = self.getNom() + "-" + avatar2.getNom()
       nPtsVie = 15
       nForce = int((self.getForce() + avatar2.getForce()) / 2 * 85 / 100)
-      nTaille = int((self.getTaille() + avatar2.getTaille()) / 2 * 85 / 100)
+      tailleCm = int(self.getTaille() * 100)
+      tailleCmAutre = int(avatar2.getTaille() * 100)
+      nTaille = int((tailleCm + tailleCmAutre) / 2 * 85 / 100 / 100)
       nPoids = int((self.getPoids() + avatar2.getPoids()) / 2 * 85 / 100)
       nCategorie = self.getCategorie()
       return Personnage(nNom, nPtsVie, nForce, nTaille, nPoids, nCategorie)
@@ -92,10 +94,10 @@ class Personnage ():
       k = (self.imc() + self.getForce()) / (avatar2.imc() + avatar2.getForce())
       
       if k >= 1 :
-          avatar2.setPtsVie(avatar2.getPtsVie() / k)
+          avatar2.setPtsVie(int(avatar2.getPtsVie() / k))
           
       if k < 1 :
-          self.setPtsVie(self.getPtsVie() * k)
+          self.setPtsVie(int(self.getPtsVie() * k))
     
     
 
