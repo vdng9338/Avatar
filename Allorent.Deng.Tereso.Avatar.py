@@ -77,9 +77,16 @@ class Personnage ():
       self.setPtsVie(self.getPtsVie() - vie)
   
   def engendrer(self, avatar2) :
-      if self.testCat(avatar2):
-          return Personnage(self.getNom() + "-" + avatar2.getNom() , int((self.getPtsVie() + avatar2.getPtsVie())*100- (self.getPtsVie() + avatar2.getPtsVie())*15) / 100 , int((self.getForce() + avatar2.getForce())*100 - (self.getForce() + avatar2.getForce())*15) / 100, 1.45 , 60 , self.getCategorie())
+    if self.testCat(avatar2):
+    	nNom = self.getNom() + "-" + avatar2.getNom()
+      nPtsVie = int((self.getPtsVie() + avatar2.getPtsVie()) * 85 / 100)
+      nForce = int((self.getForce() + avatar2.getForce()) * 85 / 100)
+      nTaille = 1.45
+      nPoids = 60
+      nCategorie = self.getCategorie()
+      return Personnage(nNom, nPtsVie, nForce, nTaille, nPoids, nCategorie)
       # Caractéristiques à vérifier
+      # Pour la clarté du code, j'ai (Victor) créé des variables intermédiaires, pour éviter de tout mettre sur 1 ligne
       
   def combat(self, avatar2):
       k = (self.imc() + self.getForce()) / (avatar2.imc() + avatar2.getForce())
@@ -279,4 +286,3 @@ def main():
             print("Choix inconnu !")
 
 main()
-
