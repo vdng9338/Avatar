@@ -9,7 +9,7 @@ class Personnage ():
     self._taille = taille
     self._poids = poids
     self._categorie = categorie
-    self._imc = poids / taille**2
+    self._imc = poids / taille**2 # ICI
     
   def getPtsVie(self):
     return self._ptsVie
@@ -57,6 +57,7 @@ class Personnage ():
     print("Taille :", self.getTaille(), "mètre(s)")
     print("Poids :", self.getPoids(), "kilogrammes")
     print("Catégorie :", self.getCategorie())
+    print("IMC :", self.getImc()) # ICI
   
   
   def testVie (self):
@@ -78,7 +79,7 @@ class Personnage ():
         return Personnage(self.getNom() + "-" + avatar2.getNom() , 15 , int(round((self.getForce() + avatar2.getForce()) / 2 * 0.85, 0)), round((self.getTaille() + avatar2.getTaille()) / 2 * 0.85, 2), int(round((self.getPoids() + avatar2.getPoids()) / 2 * 0.85, 0)), self.getCategorie())
       
   def combat(self, avatar2):
-      k = (self.imc() + self.getForce()) / (avatar2.imc() + avatar2.getForce())
+      k = (self.getImc() + self.getForce()) / (avatar2.getImc() + avatar2.getForce()) # ICI : modifié en conséquence
       # Le sujet précise que les points de vie sont des valeurs entières
       if k >= 1 :
           avatar2.setPtsVie(int(round(avatar2.getPtsVie() / k)))
