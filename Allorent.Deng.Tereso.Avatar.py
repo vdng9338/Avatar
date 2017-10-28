@@ -275,6 +275,7 @@ def interactionEntrainement(avatar):
       print("")
       if iAvatar < 0 or iAvatar >= len(avatar):
         print("L'avatar ", iAvatar, "n'existe pas.")
+        return
       if avatar[iAvatar].getForce() >= 50:
         print ("Cet avatar possède déja la force maximum atteignable.\nEntraîner plus cet avatar reviendrait à le doper, or cela est interdit aux yeux de la loi et passible de lourdes sanctions.")
       else:
