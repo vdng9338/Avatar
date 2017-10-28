@@ -61,8 +61,8 @@ class Personnage ():
     
   def getImc(self):
     return round(self._imc, 1)
- 
-def getArgent(self):
+
+  def getArgent(self):  
     return self._argent
   
   def setArgent(self, argent):
@@ -266,6 +266,7 @@ def interactionCombat(avatars):
 def interactionEntrainement(avatar):
     if len(avatar) == 0:
       print("Il n'y a aucun avatar à entraîner.\n")
+      return
     try:
       print("L'entraînement coûte 20 pièces d'or et permet d'augmenter sa force de 1 à 10 points.\n")
       for i in range(len(avatar)):
